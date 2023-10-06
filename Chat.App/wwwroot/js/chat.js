@@ -11,8 +11,7 @@ connection.on("ReceiveMessage", function (user, message) {
 });
 
 connection.start().then(function () {
-    connection.invoke("GetConnectionId").then(function (id) {
-        /*document.getElementById("connectionId").innerText = id;*/
+    connection.invoke("GetConnectionId").then(function (id) {        
         $('#connectionId').text(id);
     })
     $("#send").disabled = false;
@@ -30,15 +29,24 @@ $("#send").on("click", function (event) {
     event.preventDefault();
 });
 
+$("#btnAddUsuario").on("click", function (event) {
+    var user = $("#usuario").val();
+    let userConnectionId = $('#connectionId').text();    
+    connection.invoke("AddUser", user, userConnectionId).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
 $("#sendPrivate").on("click", function (event) {
-    let fromUser = $("#usuario").val();
-    let toUser = $("#usuarioDestinatario").val();
+    let sender = $("#usuario").val();
+    let receiver = $("#usuarioDestinatario").val();
     let message = $("#mensagem").val();
     let admin = $("#admin").val();
 
     let userConnection = $('#connectionId').text();
     
-    connection.invoke("SendToUserWithAdmin", userConnection, toUser, admin, message).catch(function (err) {
+    connection.invoke("SendToUserWithAdmin", sender, receiver, admin, message).catch(function (err) {
         return console.error(err.toString());
     });
 
