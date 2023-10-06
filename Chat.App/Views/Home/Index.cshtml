@@ -2,7 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container col-6">
+<div class="container col-12">
+    <div class="row">
+        <div class="col-3">Connection Id</div>
+        <div class="col-6"><span id="connectionId" /></div>
+    </div>
     <div class="form-group">
         <label for="usuario">Usuário</label>
         <input type="text" id="usuario" class="form-control" />
@@ -12,6 +16,15 @@
         <textarea class="form-control" id="mensagem" rows="2"></textarea>
     </div>
     <input type="button" class="btn btn-primary" id="send" value="Enviar Mensagem" />
+    <input type="button" class="btn btn-primary" id="sendPrivate" value="Enviar Mensagem Privada" />
+    <div class="form-group">
+        <label for="usuarioDestinatario">Destinatário</label>
+        <input type="text" id="usuarioDestinatario" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="admin">Administrador</label>
+        <input type="text" id="admin" class="form-control" />
+    </div>
 </div>
 <div class="row">
     <div class="col-12">
